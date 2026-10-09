@@ -8,6 +8,8 @@ package battleship;
  * Date: 2023-10-10
  * Time: 15:30
  */
+
+//teste de push InteliJ
 public class Barge extends Ship {
 
 	/**
