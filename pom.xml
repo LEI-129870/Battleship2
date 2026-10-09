@@ -133,14 +133,6 @@
 			<version>${jetbrains.annotations.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<!-- Biblioteca para o relógio para cada jogada -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.14.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
