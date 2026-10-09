@@ -8,6 +8,9 @@ package battleship;
  * Date: 2023-10-10
  * Time: 15:30
  */
+
+//teste commit
+
 public class Caravel extends Ship {
 
 	/**
