@@ -147,6 +147,13 @@
 			<version>3.0.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>28-ea+11</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
