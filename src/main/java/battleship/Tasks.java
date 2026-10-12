@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import java.io.IOException;
 
 /**
  * The type Tasks.
@@ -32,6 +33,7 @@ public class Tasks {
 	private static final String MAPA = "mapa";
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
+	private static final String EXPORTARPDF = "exportarpdf";
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -104,6 +106,21 @@ public class Tasks {
                 case AJUDA:
                     menuHelp();
                     break;
+				case EXPORTARPDF:
+					if (game != null) {
+						try {
+							PdfExporter.exportarJogadas(
+									game.getAlienMoves(),
+									"historico_jogadas.pdf"
+							);
+							System.out.println("PDF exportado com sucesso!");
+						} catch (IOException e) {
+							System.out.println("Erro ao exportar PDF: " + e.getMessage());
+						}
+					} else {
+						System.out.println("Primeiro tens de criar uma frota!");
+					}
+					break;
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
@@ -127,6 +144,7 @@ public class Tasks {
 		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
 		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
 		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
+		System.out.println("- " + EXPORTARPDF + ": Exporta o historico de jogadas para PDF.");
 		System.out.println("===============================================================");
 	}
 	/**
