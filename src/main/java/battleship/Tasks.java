@@ -19,7 +19,7 @@ public class Tasks {
 	/**
 	 * The constant GOODBYE_MESSAGE.
 	 */
-	private static final String GOODBYE_MESSAGE = "Bons ventos!";
+	private static final String GOODBYE_MESSAGE = Internacionalizacao.getMessage("menu.pdf.success") ;
 
 	/**
 	 * Strings to be used by the user
@@ -34,6 +34,8 @@ public class Tasks {
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
 	private static final String EXPORTARPDF = "exportarpdf";
+	private static final String LANG = "lang";
+
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -112,6 +114,13 @@ public class Tasks {
                 case AJUDA:
                     menuHelp();
                     break;
+				case LANG:
+					if (in.hasNext()) {
+						String langChoice = in.next();
+						Internacionalizacao.setLanguage(langChoice);
+						menuHelp();
+					}
+					break;
 				case EXPORTARPDF:
 					if (game != null) {
 						try {
@@ -119,39 +128,40 @@ public class Tasks {
 									game.getAlienMoves(),
 									"historico_jogadas.pdf"
 							);
-							System.out.println("PDF exportado com sucesso!");
+							System.out.println(Internacionalizacao.getMessage("menu.pdf.success"));
 						} catch (IOException e) {
-							System.out.println("Erro ao exportar PDF: " + e.getMessage());
+							System.out.println(Internacionalizacao.getMessage("menu.pdf.error"));
 						}
 					} else {
-						System.out.println("Primeiro tens de criar uma frota!");
+						System.out.println(Internacionalizacao.getMessage("menu.pdf.nofleet"));
 					}
 					break;
 				default:
-					System.out.println("Que comando é esse??? Repete ...");
+					System.out.println(Internacionalizacao.getMessage("menu.unknown"));
 			}
 			System.out.print("> ");
 			command = in.next();
 		}
-		System.out.println(GOODBYE_MESSAGE);
+		System.out.println(Internacionalizacao.getMessage("menu.goodbye"));
 	}
 
 	/**
 	 * This function provides help information about the menu commands.
 	 */
 	public static void menuHelp() {
-		System.out.println("======================= AJUDA DO MENU =========================");
-		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
-		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
-		System.out.println("- " + LEFROTA + ": Permite criar e carregar uma frota personalizada.");
-		System.out.println("- " + STATUS + ": Mostra o status atual da frota.)");
-		System.out.println("- " + MAPA + ": Exibe o mapa da frota.");
-		System.out.println("- " + RAJADA + ": Realiza uma rajada de disparos.");
-		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
-		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
-		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
-		System.out.println("- " + EXPORTARPDF + ": Exporta o historico de jogadas para PDF.");
-		System.out.println("===============================================================");
+		System.out.println(Internacionalizacao.getMessage("menu.header"));
+		System.out.println(Internacionalizacao.getMessage("menu.info"));
+		System.out.println(Internacionalizacao.getMessage("menu.gerafrota"));
+		System.out.println(Internacionalizacao.getMessage("menu.lefrota"));
+		System.out.println(Internacionalizacao.getMessage("menu.estado"));
+		System.out.println(Internacionalizacao.getMessage("menu.mapa"));
+		System.out.println(Internacionalizacao.getMessage("menu.rajada"));
+		System.out.println(Internacionalizacao.getMessage("menu.simula"));
+		System.out.println(Internacionalizacao.getMessage("menu.tiros"));
+		System.out.println(Internacionalizacao.getMessage("menu.desisto"));
+		System.out.println(Internacionalizacao.getMessage("menu.exportarpdf"));
+		System.out.println(Internacionalizacao.getMessage("menu.lang"));
+		System.out.println(Internacionalizacao.getMessage("menu.footer"));
 	}
 	/**
 	 * This operation allows the build up of a fleet, given user data
@@ -172,12 +182,12 @@ public class Tasks {
 				if (success)
 					i++;
 				else
-					LOGGER.info("Falha na criacao de {} {} {}", s.getCategory(), s.getBearing(), s.getPosition());
+					LOGGER.info(Internacionalizacao.getMessage("log.fleet.fail", s.getCategory(), s.getBearing(), s.getPosition()));
 			} else {
-				LOGGER.info("Navio desconhecido!");
+				LOGGER.info(Internacionalizacao.getMessage("log.fleet.unknown"));
 			}
 		}
-		LOGGER.info("{} navios adicionados com sucesso!", i);
+		LOGGER.info(Internacionalizacao.getMessage("log.fleet.success", i));
 		return fleet;
 	}
 
@@ -222,7 +232,7 @@ public class Tasks {
 	public static IPosition readClassicPosition(@NotNull Scanner in) {
 		// Verifica se ainda há tokens disponíveis
 		if (!in.hasNext()) {
-			throw new IllegalArgumentException("Nenhuma posição válida encontrada!");
+			throw new IllegalArgumentException(Internacionalizacao.getMessage("err.pos.notfound"));
 		}
 
 		String part1 = in.next(); // Primeiro token
@@ -247,7 +257,7 @@ public class Tasks {
 			int row = Integer.parseInt(part2); // Extrair a linha
 			return new Position(column, row);
 		} else {
-			throw new IllegalArgumentException("Formato inválido. Use 'A3', 'A 3' ou similar.");
+			throw new IllegalArgumentException(Internacionalizacao.getMessage("err.pos.invalid"));
 		}
 	}
 
