@@ -72,7 +72,13 @@ public class Tasks {
 					break;
 				case RAJADA:
 					if (game != null) {
-						game.readEnemyFire(in);
+						GameTimer timer = new GameTimer();
+						timer.startTurn();        // Inicia o relógio antes de ler/processar a jogada
+
+						game.readEnemyFire(in);   // Onde o utilizador introduz a rajada de tiros
+
+						timer.endTurn();          // Para o relógio e mostra o tempo gasto
+
 						myFleet.printStatus();
 						game.printMyBoard(true, false);
 
