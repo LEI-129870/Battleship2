@@ -34,6 +34,7 @@ public class Tasks {
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
 	private static final String EXPORTARPDF = "exportarpdf";
+	private static final String SCOREBOARD = "scoreboard";
 	private static final String LANG = "lang";
 
 
@@ -136,6 +137,9 @@ public class Tasks {
 						System.out.println(Internacionalizacao.getMessage("menu.pdf.nofleet"));
 					}
 					break;
+				case SCOREBOARD:
+					Scoreboard.showScoreboard();
+					break;
 				default:
 					System.out.println(Internacionalizacao.getMessage("menu.unknown"));
 			}
@@ -149,6 +153,19 @@ public class Tasks {
 	 * This function provides help information about the menu commands.
 	 */
 	public static void menuHelp() {
+		System.out.println("======================= AJUDA DO MENU =========================");
+		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
+		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
+		System.out.println("- " + LEFROTA + ": Permite criar e carregar uma frota personalizada.");
+		System.out.println("- " + STATUS + ": Mostra o status atual da frota.)");
+		System.out.println("- " + MAPA + ": Exibe o mapa da frota.");
+		System.out.println("- " + RAJADA + ": Realiza uma rajada de disparos.");
+		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
+		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
+		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
+		System.out.println("- " + EXPORTARPDF + ": Exporta o historico de jogadas para PDF.");
+		System.out.println("- " + SCOREBOARD + ": Mostra a tabela de pontuações dos jogos passados.");
+		System.out.println("===============================================================");
 		System.out.println(Internacionalizacao.getMessage("menu.header"));
 		System.out.println(Internacionalizacao.getMessage("menu.info"));
 		System.out.println(Internacionalizacao.getMessage("menu.gerafrota"));
