@@ -34,6 +34,7 @@ public class Tasks {
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
 	private static final String EXPORTARPDF = "exportarpdf";
+	private static final String SCOREBOARD = "scoreboard";
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -121,6 +122,9 @@ public class Tasks {
 						System.out.println("Primeiro tens de criar uma frota!");
 					}
 					break;
+				case SCOREBOARD:
+					Scoreboard.showScoreboard();
+					break;
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
@@ -145,6 +149,7 @@ public class Tasks {
 		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
 		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
 		System.out.println("- " + EXPORTARPDF + ": Exporta o historico de jogadas para PDF.");
+		System.out.println("- " + SCOREBOARD + ": Mostra a tabela de pontuações dos jogos passados.");
 		System.out.println("===============================================================");
 	}
 	/**
