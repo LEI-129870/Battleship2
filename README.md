@@ -1,5 +1,19 @@
 # ⚓ Battleship 2.0
 
+## Estratégia do Oponente de IA (Batalha Naval)
+
+Para garantir que o nosso oponente virtual não se limita a disparar aleatoriamente, definimos a seguinte estratégia:
+
+- Diário de Bordo rigoroso: O LLM tem de manter o registo exato de todas as rajadas anteriores (coordenadas e resultados: água, acerto ou afundamento), pois a memória é fundamental para não desperdiçar tiros.
+- Proibido disparar à toa: Nunca repetir coordenadas já testadas nem mandar tiros para fora do tabuleiro (ex: K12), a não ser obrigatoriamente na última jogada para esgotar os 3 tiros quando a frota já foi toda ao fundo.
+- Tática de caça (contíguas): Sempre que acertarmos num navio, a rajada seguinte deve concentrar-se imediatamente nas posições à volta (Norte, Sul, Este, Oeste) para descobrir a orientação da embarcação e despachá-la.
+- Isolamento de diagonais e halos: Como os navios não se podem tocar (nem pelos cantos, exceto no corpo em T do Galeão), assim que um navio for totalmente afundado, o LLM deve riscar o "halo" de uma posição à volta como água intransitável, poupando muitos tiros inúteis.
+
+ Exemplo prático de raciocínio fornecido à IA:
+- Situação: A Rajada 2 atingiu uma Nau em C5.
+- Lógica esperada do LLM: "Se acertei na Nau em C5, tenho de testar o B5 (Norte), D5 (Sul) e C6 (Este) para perceber para onde o navio se estende."
+- Resposta gerada pelo LLM: `[{"row": "B", "column": 5}, {"row": "D", "column": 5}, {"row": "C", "column": 6}]`
+
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Java Version](https://img.shields.io/badge/Java-17%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
