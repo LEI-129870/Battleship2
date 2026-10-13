@@ -77,25 +77,39 @@ public class Tasks {
 
 						if (game.getRemainingShips() == 0) {
 							game.over();
+							System.out.print("Parabéns! Venceu o jogo. Insira o seu nome: ");
+							String nome = in.next();
+
+							int tirosReais = game.getAlienMoves() != null ? game.getAlienMoves().size() : 0;
+
+							int pontosReais = Math.max(1000 - (tirosReais * 20), 100);
+
+							Scoreboard.saveScore(nome, pontosReais, tirosReais);
 							System.exit(0);
 						}
 					}
 					break;
 				case SIMULA:
 					if (game != null) {
+						int tirosSimulados = 0;
 						while (game.getRemainingShips() > 0){
 							game.randomEnemyFire();
+							tirosSimulados++;
 							myFleet.printStatus();
 							game.printMyBoard(true, false);
 							try {
 								Thread.sleep(3000);
 							} catch (InterruptedException e) {
-								Thread.currentThread().interrupt(); // Best practice: restore interrupt status
+								Thread.currentThread().interrupt();
 							}
 						}
 
 						if (game.getRemainingShips() == 0) {
 							game.over();
+
+							int pontosSimulacao = Math.max(1000 - (tirosSimulados * 20), 100);
+
+							Scoreboard.saveScore("Simulador_IA", pontosSimulacao, tirosSimulados);
 							System.exit(0);
 						}
 					}
