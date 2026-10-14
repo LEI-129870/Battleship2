@@ -14,11 +14,9 @@ public class Scoreboard {
 
     private static final String FILE_PATH = "data/scoreboard.csv";
 
-    // Adiciona uma nova pontuação ao ficheiro CSV
     public static void saveScore(String playerName, int score, int shots) {
         File file = new File(FILE_PATH);
 
-        // Cria a pasta 'data' se ainda não existir
         if (file.getParentFile() != null && !file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
@@ -28,12 +26,10 @@ public class Scoreboard {
         try (FileWriter writer = new FileWriter(file, true);
              CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
 
-            // Escreve o cabeçalho se o ficheiro for novo
             if (!fileExists) {
                 csvPrinter.printRecord("Player", "Score", "Shots");
             }
 
-            // Regista os dados da partida
             csvPrinter.printRecord(playerName, score, shots);
             csvPrinter.flush();
             System.out.println("Pontuação guardada com sucesso!");
@@ -43,7 +39,6 @@ public class Scoreboard {
         }
     }
 
-    // Le o ficheiro CSV e imprime a tabela de resultados na consola
     public static void showScoreboard() {
         File file = new File(FILE_PATH);
 
