@@ -1,5 +1,8 @@
 # ⚓ Battleship 2.0
 
+Link para video de demonstração: 
+https://youtu.be/3o06OV-J97Y
+
 ## Estratégia do Oponente de IA (Batalha Naval)
 
 Para garantir que o nosso oponente virtual não se limita a disparar aleatoriamente, definimos a seguinte estratégia:
