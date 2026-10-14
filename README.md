@@ -1,6 +1,6 @@
 # ⚓ Battleship 2.0
 
-Link para video de demonstração: 
+Link para video de demonstração (recomendado alterar a resolução para 720p): 
 https://youtu.be/3o06OV-J97Y
 
 ## Estratégia do Oponente de IA (Batalha Naval)
