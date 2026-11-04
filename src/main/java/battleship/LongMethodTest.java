@@ -4,8 +4,13 @@ package battleship;
 public class LongMethodTest {
 
     public void testarLongMethod() {
-        int total = 0;
+        int total = primeiraParte();
+        total += segundaParte();
+        System.out.println(total);
+    }
 
+    private int primeiraParte() {
+        int total = 0;
         total += 1;
         total += 2;
         total += 3;
@@ -23,6 +28,11 @@ public class LongMethodTest {
         total += 15;
         total += 16;
         total += 17;
+        return total;
+    }
+
+    private int segundaParte() {
+        int total = 0;
         total += 18;
         total += 19;
         total += 20;
@@ -41,7 +51,6 @@ public class LongMethodTest {
         total += 33;
         total += 34;
         total += 35;
-
-        System.out.println(total);
+        return total;
     }
 }
