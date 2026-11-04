@@ -53,4 +53,8 @@ public class LongMethodTest {
         total += 35;
         return total;
     }
+
+    private void CalcularPontos() {
+        return;
+    }
 }
