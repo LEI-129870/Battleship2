@@ -1,0 +1,37 @@
+
+# 129841 - Long Method
+name: Qodana smell gate 129841
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Prepare Qodana configuration
+        run: cp qodana-129841.yaml qodana.yaml
+
+
+      - name: Run Qodana Long Method
+        uses: JetBrains/qodana-action@v2026.2
+        with:
+          args: --within-docker=false
+          use-annotations: true
+          post-pr-comment: true
+          upload-result: true
