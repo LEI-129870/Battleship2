@@ -33,3 +33,4 @@ jobs:
           args: --within-docker=false --profile-path=/data/project/.qodana/profiles/profile-129841.yaml
           use-annotations: true
           post-pr-comment: true
+          upload-result: true
