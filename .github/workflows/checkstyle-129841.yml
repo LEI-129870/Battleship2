@@ -1,0 +1,26 @@
+name: Checkstyle 129841
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Run Checkstyle
+        run: |
+          curl -fsSL -o checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-12.1.1/checkstyle-12.1.1-all.jar
+          java -jar checkstyle.jar -c checkstyle-129841.xml src/main/java
