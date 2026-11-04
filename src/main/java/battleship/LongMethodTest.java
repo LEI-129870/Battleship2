@@ -54,7 +54,7 @@ public class LongMethodTest {
         return total;
     }
 
-    private void CalcularPontos() {
+    private void calcularPontos() {
         return;
     }
 }
