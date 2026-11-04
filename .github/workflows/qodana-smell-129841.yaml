@@ -30,6 +30,6 @@ jobs:
       - name: Run Qodana Long Method
         uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --within-docker=false --profile-path=.qodana/profiles/profile-129841.yaml
+          args: --within-docker=false --profile-path=/data/project/.qodana/profiles/profile-129841.yaml
           use-annotations: true
           post-pr-comment: true
