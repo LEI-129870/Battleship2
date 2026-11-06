@@ -1,7 +1,7 @@
 #129870
 Vasco Guedes
 version: "1.0"
-linter: jetbrains/qodana-jvm-community:2026.2
+linter: jetbrains/qodana-jvm-community:latest
 project JDK: 21
 profile:
   path: .qodana/profiles/profile-129870.yaml
