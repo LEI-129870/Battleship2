@@ -70,4 +70,52 @@ public class Scoreboard {
             System.err.println("Erro ao ler o scoreboard: " + e.getMessage());
         }
     }
+
+    public static void analyzeAndValidatePlayerStats(String playerName, int score, int shots, String difficulty, boolean hasWon, int bonusPoints) {
+        int finalCalculatedScore = 0;
+        int penalty = 0;
+
+        if (playerName != null && !playerName.isEmpty()) {
+            if (score > 0) {
+                if (shots < 10) {
+                    if (difficulty.equals("HARD")) {
+                        if (hasWon) {
+                            finalCalculatedScore = score * 3 + bonusPoints;
+                        } else {
+                            finalCalculatedScore = score + (bonusPoints / 2);
+                        }
+                    } else if (difficulty.equals("MEDIUM")) {
+                        if (hasWon) {
+                            finalCalculatedScore = score * 2 + bonusPoints;
+                        } else {
+                            finalCalculatedScore = score;
+                        }
+                    } else {
+                        if (hasWon) {
+                            finalCalculatedScore = score + bonusPoints;
+                        } else {
+                            finalCalculatedScore = score / 2;
+                        }
+                    }
+                } else {
+                    if (shots < 20) {
+                        if (difficulty.equals("HARD")) {
+                            finalCalculatedScore = score * 2;
+                        } else {
+                            finalCalculatedScore = score;
+                        }
+                    } else {
+                        penalty = 10;
+                        finalCalculatedScore = Math.max(0, score - penalty);
+                    }
+                }
+            } else {
+                finalCalculatedScore = 0;
+            }
+        } else {
+            finalCalculatedScore = -1;
+        }
+
+        System.out.println("Análise concluída para o jogador: " + playerName + " com score final: " + finalCalculatedScore);
+    }
 }
