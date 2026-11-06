@@ -19,4 +19,4 @@ jobs:
         uses: checkstyle/checkstyle-github-action@v1.2.3
         with:
           file_path: '.'
-          config_path: 'checkstyle-12345.xml'
+          config_path: 'checkstyle-129870.xml'
