@@ -1,0 +1,33 @@
+
+# 129841 - Checkstyle MethodName
+name: Checkstyle 129841
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Checkstyle Marketplace Action
+        uses: dbelyaev/action-checkstyle@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: checkstyle-129841.xml
+          checkstyle_version: "12.1.1"
+          reporter: github-pr-check
+          level: error
+          filter_mode: nofilter
+          fail_level: error
+          workdir: src/main/java

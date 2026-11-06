@@ -1,34 +1,22 @@
-#-------------------------------------------------------------------------------#
-#               Qodana analysis is configured by qodana.yaml file               #
-#             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
-#-------------------------------------------------------------------------------#
+
 version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: 25
 
-#Specify inspection profile for code analysis
 profile:
-  name: qodana.starter
-
-#Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
-
-#Disable inspections
-#exclude:
-#  - name: <SomeDisabledInspectionId>
-#    paths:
-#      - <path/where/not/run/inspection>
-
-projectJDK: "23" #(Applied in CI/CD pipeline)
-
-#Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
-
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
+  base:
+    name: empty
+  inspections:
+    - inspection: NonCommentSourceStatements
+      enabled: true
+      options:
+        m_limit: 30
 
 #Specify Qodana linter for analysis (Applied in CI/CD pipeline)
 linter: "jetbrains/qodana-jvm:2025.1\r"
 include:
   - name: DuplicateBranchesInSwitch
   - name: UNUSED_IMPORT
+failureConditions:
+  severityThresholds:
+    any: 0
