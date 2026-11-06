@@ -18,7 +18,7 @@ public class Barge extends Ship {
 	 * @param bearing The bearing of the barge (NORTH, SOUTH, EAST, or WEST).
 	 * @param pos     The upper-left position of the barge on the game board.
 	 */
-	public Barge(Compass bearing, IPosition pos) {
+	public Barge(Compass bearing, IPosition pos, int q, int w, int e, int r, int t, int y, int u, int i, int o, int p) {
 		super("Barca", bearing, pos, 1);
 
 		// Add the single position of the barge to the list of positions
