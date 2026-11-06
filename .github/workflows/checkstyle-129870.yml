@@ -1,0 +1,22 @@
+# 129870 Vasco Guedes
+name: Checkstyle Quality Gate Constant 12345
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executar Checkstyle
+        uses: checkstyle/checkstyle-github-action@v1.2.3
+        with:
+          file_path: '.'
+          config_path: 'checkstyle-12345.xml'
