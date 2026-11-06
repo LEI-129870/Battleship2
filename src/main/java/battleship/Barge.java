@@ -11,7 +11,7 @@ package battleship;
 
 //teste de push InteliJ
 public class Barge extends Ship {
-
+	public static final int maxShips = 10; // Violação: deveria ser MAX_SHIPS
 	/**
 	 * Instantiates a new Barge.
 	 *
