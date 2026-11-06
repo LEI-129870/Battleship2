@@ -1,1 +1,10 @@
-
+#129870
+Vasco Guedes
+profile:
+  base:
+    name: empty
+  inspections:
+    - inspection: MethodWithTooManyParameters
+      enabled: true
+      options:
+        maxParameterCount: 4
