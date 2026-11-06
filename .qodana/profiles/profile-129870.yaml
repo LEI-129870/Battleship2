@@ -4,7 +4,7 @@ profile:
   base:
     name: empty
   inspections:
-    - inspection: MethodWithTooManyParameters
-      enabled: true
-      options:
-        maxParameterCount: 4
+    inspection: MethodWithTooManyParameters
+    enabled: true
+    options:
+      m_limit: 4
