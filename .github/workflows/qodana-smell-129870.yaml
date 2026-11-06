@@ -1,14 +1,16 @@
-#129870 Vasco Guedes
+# 129870 Vasco Guedes
 name: Qodana smell gate 129870
 on:
   pull_request:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   checks: write
   pull-requests: write
+
 jobs:
   qodana:
     runs-on: ubuntu-latest
@@ -19,6 +21,6 @@ jobs:
           fetch-depth: 0
       - uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --config qodana-12345.yaml
+          args: --config qodana-129870.yaml
           use-annotations: true
           post-pr-comment: true
