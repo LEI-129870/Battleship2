@@ -1,0 +1,15 @@
+# 129829 - Rodrigo Cruz
+profile:
+  base:
+    name: empty
+  inspections:
+    - inspection:
+        id: MethodWithTooManyLines
+        enabled: true
+        options:
+          limit: 30
+    - inspection:
+        id: OverlyComplexMethod
+        enabled: true
+        options:
+          mccabeThreshold: 10
