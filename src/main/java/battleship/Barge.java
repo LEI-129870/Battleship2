@@ -21,7 +21,7 @@ public class Barge extends Ship {
 	public Barge(Compass bearing, IPosition pos) {
 		super("Barca", bearing, pos, 1);
 
-		// Add the single position of the barge to the list of positions
+		// Add the single position of the barge to the list of position
 		getPositions().add(new Position(pos.getRow(), pos.getColumn()));
 	}
 }
