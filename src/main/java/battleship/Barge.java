@@ -11,14 +11,14 @@ package battleship;
 
 //teste de push InteliJ
 public class Barge extends Ship {
-	public static final int MAX_SHIPS = 10;
+
 	/**
 	 * Instantiates a new Barge.
 	 *
 	 * @param bearing The bearing of the barge (NORTH, SOUTH, EAST, or WEST).
 	 * @param pos     The upper-left position of the barge on the game board.
 	 */
-	public Barge(Compass bearing, IPosition pos) {
+	public Barge(Compass bearing, IPosition Pos) {
 		super("Barca", bearing, pos, 1);
 
 		// Add the single position of the barge to the list of positions
