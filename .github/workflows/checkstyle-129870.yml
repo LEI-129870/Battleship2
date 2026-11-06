@@ -1,5 +1,5 @@
 # 129870 Vasco Guedes
-name: Checkstyle Quality Gate Constant 12345
+name: Checkstyle Quality Gate Constant 129870
 
 on:
   pull_request:
