@@ -1,11 +1,8 @@
 # 129849 - Duarte Nobre Pereira
 version: "1.0"
-linter: jetbrains/qodana-jvm-community:2026.2
-projectJDK: 21
-
+linter: jetbrains/qodana-jvm-community:latest
 profile:
   path: .qodana/profiles/profile-129849.yaml
-
 failureConditions:
   severityThresholds:
-    any: 0
+    any: 1

@@ -1,8 +1,6 @@
-profile:
-  base:
-    name: empty
-  inspections:
-
-inspection: UnnecessaryLocalVariable
-enabled: true
-severity: WARNING
+name: profile-129849
+baseProfile: qodana.recommended
+inspections:
+  - name: UnnecessaryLocalVariable
+    severity: ERROR
+    enabled: true
