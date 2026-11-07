@@ -135,8 +135,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-<<<<<<< HEAD
-=======
 		<!-- Apache Commons CSV -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -155,7 +153,6 @@
 			<artifactId>commons-configuration2</artifactId>
 			<version>2.10.1</version>
 		</dependency>
->>>>>>> ea6098eaa2d764cbd910c1d587812994461e6514
 
 	</dependencies>
 
