@@ -3,8 +3,8 @@
 profile:
   base:
     name: empty
-  inspections:
-    inspection: MethodWithTooManyParameters
+inspections:
+  - inspection: MethodWithTooManyParameters
     enabled: true
     options:
       m_limit: 4
