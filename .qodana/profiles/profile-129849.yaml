@@ -1,9 +1,8 @@
-name: profile-129849
-baseProfile: qodana.recommended
-inspections:
-  - name: UnusedDeclaration
-    severity: ERROR
-    enabled: true
-  - name: UnusedSymbol
-    severity: ERROR
-    enabled: true
+profile:
+  base:
+    name: empty
+  inspections:
+
+inspection: UnnecessaryLocalVariable
+enabled: true
+severity: WARNING
