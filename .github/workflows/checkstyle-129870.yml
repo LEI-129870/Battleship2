@@ -9,17 +9,19 @@ jobs:
   checkstyle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up JDK
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Download Checkstyle CLI
+        run: |
+          wget -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.15.0/checkstyle-10.15.0-all.jar -O checkstyle.jar
+
       - name: Run Checkstyle
-        uses: checkstyle/action-checkstyle@master
-        with:
-          file_or_dir: 'src'
-          config_path: 'checkstyle-129870.xml'
-          level: 'error'
+        run: |
+          java -jar checkstyle.jar -c checkstyle-129870.xml src/
