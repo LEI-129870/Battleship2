@@ -1,1 +1,29 @@
+# 129829 - Rodrigo Cruz
+name: Checkstyle gate 129829
 
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Checkstyle
+        uses: checkstyle/action-checkstyle@master
+        with:
+          level: 'error'
+          tool: 'checkstyle'
+          config: 'Checkstyle/checkstyle-129829.xml'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
