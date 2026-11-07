@@ -1,1 +1,25 @@
-# 129870
+#129870 Nome do Aluno
+name: Checkstyle Gate 129870
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Checkstyle
+        uses: checkstyle/action-checkstyle@master
+        with:
+          file_or_dir: 'src'
+          config_path: 'checkstyle-129870.xml'
+          level: 'error'
