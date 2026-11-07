@@ -10,7 +10,7 @@ package battleship;
  */
 
 //teste de push InteliJ
-public class barge extends Ship {
+public class Barge extends Ship {
 
 	/**
 	 * Instantiates a new Barge.
