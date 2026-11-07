@@ -4,12 +4,7 @@ profile:
     name: empty
   inspections:
     - inspection:
-        id: MethodWithTooManyLines
+        id: ClassWithTooManyMethods
         enabled: true
         options:
-          limit: 30
-    - inspection:
-        id: OverlyComplexMethod
-        enabled: true
-        options:
-          mccabeThreshold: 10
+          limit: 10
