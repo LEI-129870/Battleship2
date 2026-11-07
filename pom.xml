@@ -57,10 +57,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-<<<<<<< HEAD
-=======
-
->>>>>>> ea6098eaa2d764cbd910c1d587812994461e6514
 
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
