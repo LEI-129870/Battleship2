@@ -53,12 +53,6 @@ public class LongMethodTest {
         return total;
     }
 
-    public int calcularNumeros(){
-        int pontos = 10;
-        return pontos;
-    }
-
-
     private void calcularPontos() {
         return;
     }
