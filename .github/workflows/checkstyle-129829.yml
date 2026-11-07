@@ -20,4 +20,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Run Checkstyle with Maven
-        run: mvn checkstyle:check -Dcheckstyle.config.location="${{ github.workspace }}/Checkstyle/checkstyle-129829.xml"
+        run: mvn checkstyle:check -Dcheckstyle.config.location=checkstyle-129829.xml
