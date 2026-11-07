@@ -71,7 +71,7 @@ public class Scoreboard {
         }
     }
 
-    public void calcularPontos(){
+    public void CalcularPontos(){
 
     }
 

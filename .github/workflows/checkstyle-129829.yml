@@ -13,17 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
           java-version: '17'
+          distribution: 'temurin'
 
-      - name: Run Checkstyle
-        uses: checkstyle/action-checkstyle@master
-        with:
-          level: 'error'
-          tool: 'checkstyle'
-          config: 'Checkstyle/checkstyle-129829.xml'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Checkstyle with Maven
+        run: mvn checkstyle:check -Dcheckstyle.config.location=Checkstyle/checkstyle-129829.xml
