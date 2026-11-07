@@ -17,6 +17,10 @@ public class Internacionalizacao {
         messages = ResourceBundle.getBundle("messages", currentLocale);
     }
 
+    public static String getUnusedLocaleDescription() {
+        return "Metodo sem utilizacao no sistema.";
+    }
+
     public static String getMessage(String key, Object... args) {
         if (messages == null || !messages.containsKey(key)) {
             return key;

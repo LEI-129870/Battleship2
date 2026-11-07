@@ -1,0 +1,28 @@
+name: Qodana Code Quality (129849)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  qodana:
+    name: Qodana Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Qodana Scan
+        uses: JetBrains/qodana-action@v2024.2.5
+        with:
+          args: --profile-path,.qodana/profiles/profile-129849.yaml --fail-threshold,1
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
