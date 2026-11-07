@@ -71,8 +71,6 @@ public class Scoreboard {
         }
     }
 
-    public void calcularPontos(){
-
-    }
+    public static final int maxShips = 5;
 
 }
