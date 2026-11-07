@@ -22,6 +22,8 @@ public class Internacionalizacao {
         return pontos;
     }
 
+    private static final int valor_limite_pontos = 100;
+
     public static String getMessage(String key, Object... args) {
         if (messages == null || !messages.containsKey(key)) {
             return key;
