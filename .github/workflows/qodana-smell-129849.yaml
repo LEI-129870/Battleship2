@@ -1,26 +1,29 @@
-name: Qodana smell gate 129849
+name: Qodana Dead Code Gate
 
 on:
-  push:
-    branches: [ main, master, DeadCode-129849 ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
-  qodana:
-    name: Qodana Scan
+  qodana-deadcode:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
-      - name: Run Qodana Scan
+      - name: Run Qodana Dead Code
         uses: JetBrains/qodana-action@v2024.2.5
         with:
           args: --profile-path,.qodana/profiles/profile-129849.yaml,--fail-threshold,1
