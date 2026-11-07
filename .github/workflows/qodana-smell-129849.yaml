@@ -1,4 +1,4 @@
-name: Qodana Code Quality (129849)
+name: Qodana smell gate 129849
 
 on:
   push:
