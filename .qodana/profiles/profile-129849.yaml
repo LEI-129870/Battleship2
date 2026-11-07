@@ -1,0 +1,9 @@
+name: profile-129849
+baseProfile: qodana.recommended
+inspections:
+  - name: UnusedDeclaration
+    severity: ERROR
+    enabled: true
+  - name: UnusedSymbol
+    severity: ERROR
+    enabled: true
