@@ -71,4 +71,16 @@ public class Scoreboard {
         }
     }
 
+    public void dummyMethod1() {}
+    public void dummyMethod2() {}
+    public void dummyMethod3() {}
+    public void dummyMethod4() {}
+    public void dummyMethod5() {}
+    public void dummyMethod6() {}
+    public void dummyMethod7() {}
+    public void dummyMethod8() {}
+    public void dummyMethod9() {}
+    public void dummyMethod10() {}
+    public void dummyMethod11() {}
+
 }
