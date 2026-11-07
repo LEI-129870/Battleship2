@@ -11,7 +11,7 @@ package battleship;
 
 //teste de push InteliJ
 public class Barge extends Ship {
-	public static final int MAX_SHIPS = 10;
+
 	/**
 	 * Instantiates a new Barge.
 	 *
@@ -21,7 +21,7 @@ public class Barge extends Ship {
 	public Barge(Compass bearing, IPosition pos) {
 		super("Barca", bearing, pos, 1);
 
-		// Add the single position of the barge to the list of position
+		// Add the single position of the barge to the list of positionss
 		getPositions().add(new Position(pos.getRow(), pos.getColumn()));
 	}
 }
