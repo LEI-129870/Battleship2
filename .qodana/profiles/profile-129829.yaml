@@ -7,4 +7,4 @@ profile:
         id: ClassWithTooManyMethods
         enabled: true
         options:
-          limit: 10
+          limit: 50
