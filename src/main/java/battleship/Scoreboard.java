@@ -70,4 +70,18 @@ public class Scoreboard {
             System.err.println("Erro ao ler o scoreboard: " + e.getMessage());
         }
     }
+
+    public static void dummyMethod1() {}
+    public static void dummyMethod2() {}
+    public static void dummyMethod3() {}
+    public static void dummyMethod4() {}
+    public static void dummyMethod5() {}
+    public static void dummyMethod6() {}
+    public static void dummyMethod7() {}
+    public static void dummyMethod8() {}
+    public static void dummyMethod9() {}
+    public static void dummyMethod10() {}
+    public static void dummyMethod11() {}
+    public static void dummyMethod12() {}
+
 }

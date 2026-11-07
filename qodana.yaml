@@ -12,6 +12,11 @@ profile:
       options:
         m_limit: 30
 
+#Specify Qodana linter for analysis (Applied in CI/CD pipeline)
+linter: "jetbrains/qodana-jvm:2025.1\r"
+include:
+  - name: DuplicateBranchesInSwitch
+  - name: UNUSED_IMPORT
 failureConditions:
   severityThresholds:
     any: 0

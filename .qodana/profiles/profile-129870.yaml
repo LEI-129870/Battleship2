@@ -1,0 +1,10 @@
+# 129870
+# Vasco Guedes
+profile:
+  base:
+    name: empty
+  inspections:
+    inspection: MethodWithTooManyParameters
+    enabled: true
+    options:
+      m_limit: 4
