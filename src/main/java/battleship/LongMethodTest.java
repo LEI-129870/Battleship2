@@ -50,7 +50,6 @@ public class LongMethodTest {
         total += 32;
         total += 33;
         total += 34;
-        total += 35;
         return total;
     }
 
