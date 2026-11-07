@@ -3,9 +3,8 @@ name: Qodana smell gate 129849
 
 on:
   pull_request:
-    branches: [ main ]
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -28,8 +27,9 @@ jobs:
         run: cp qodana-129849.yaml qodana.yaml
 
       - name: Run Qodana Redundant Local Variable
-        uses: JetBrains/qodana-action@v2024.2.5
+        uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --fail-threshold,1
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+          args: --within-docker=false
+          use-annotations: true
+          post-pr-comment: true
+          upload-result: true

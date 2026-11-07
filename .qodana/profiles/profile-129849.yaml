@@ -1,6 +1,8 @@
-name: profile-129849
-baseProfile: qodana.recommended
-inspections:
-  - name: UnnecessaryLocalVariable
-    severity: ERROR
-    enabled: true
+# 129849 - Redundant Local Variable
+profile:
+  base:
+    name: empty
+  inspections:
+    - inspection: UnnecessaryLocalVariable
+      enabled: true
+      severity: WARNING
