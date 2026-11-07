@@ -71,6 +71,5 @@ public class Scoreboard {
         }
     }
 
-    public static final int MAX_SHIPS = 5;
-
+    public static final int maxShips = 5;
 }
