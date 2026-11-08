@@ -5,6 +5,8 @@ inspections:
   - name: CommentedOutCode
     enabled: true
     severity: ERROR
+    options:
+      minLines: 1
 
   - name: DanglingJavadoc
     enabled: true
