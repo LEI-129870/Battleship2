@@ -9,12 +9,12 @@
     <property name="severity" value="error"/>
 
     <module name="TreeWalker">
-        <!-- Regra para Nomes de Métodos -->
-        <module name="MethodName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        <!-- Regra para Nomes de Constantes (ConstantName) -->
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
             <property name="severity" value="error"/>
             <message key="name.invalidPattern"
-                     value="O nome do método ''{0}'' não cumpre a convenção de nomenclatura (camelCase)."/>
+                     value="O nome da constante ''{0}'' não cumpre a convenção de nomenclatura (SNAKE_CASE em maiúsculas)."/>
         </module>
     </module>
 </module>
