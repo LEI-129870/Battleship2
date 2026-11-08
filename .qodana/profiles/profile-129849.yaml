@@ -2,10 +2,14 @@ name: profile-129849
 baseProfile: empty
 
 inspections:
-  - name: UnnecessaryLocalVariable
+  - name: CommentedOutCode
     enabled: true
     severity: ERROR
 
-  - name: UnusedDeclaration
+  - name: DanglingJavadoc
+    enabled: true
+    severity: ERROR
+
+  - name: CommentableToJavadoc
     enabled: true
     severity: ERROR

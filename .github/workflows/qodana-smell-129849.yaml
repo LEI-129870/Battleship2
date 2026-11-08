@@ -1,4 +1,3 @@
-
 name: Qodana smell gate 129849
 
 on:
@@ -27,7 +26,7 @@ jobs:
       - name: Prepare Qodana configuration
         run: cp qodana-129849.yaml qodana.yaml
 
-      - name: Run Qodana Dead Code
+      - name: Run Qodana Comments Code Smell
         uses: JetBrains/qodana-action@v2024.2.5
         with:
           args: --fail-threshold,1
