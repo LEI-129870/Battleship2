@@ -1,7 +1,8 @@
 package battleship;
 
 public class TestComments {
-    public boolean isShip(char cell) {
-        return cell == 'S';
+
+    public boolean isLargeFile(long bytes) {
+        return bytes > 1048576;
     }
 }

@@ -1,7 +1,9 @@
 name: profile-129849
-baseProfile: empty
+
+base:
+  name: empty
 
 inspections:
-  - inspection: MagicCharacter
+  - inspection: MagicNumber
     enabled: true
     severity: ERROR
