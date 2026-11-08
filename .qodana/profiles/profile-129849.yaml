@@ -1,17 +1,9 @@
-name: profile-129849
-baseProfile: empty
+  name: profile-129849
+
+base:
+  name: empty
 
 inspections:
-  - name: CommentedOutCode
-    enabled: true
-    severity: ERROR
-    options:
-      minLines: 1
-
-  - name: DanglingJavadoc
-    enabled: true
-    severity: ERROR
-
-  - name: CommentableToJavadoc
+  - inspection: CommentedOutCode
     enabled: true
     severity: ERROR
