@@ -52,7 +52,10 @@ public class LongMethodTest {
         total += 34;
         return total;
     }
-
+public int calcularNumeros(){
+        int pontos = 10;
+        return pontos;
+}
     private void calcularPontos() {
         return;
     }
