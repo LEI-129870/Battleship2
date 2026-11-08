@@ -2,7 +2,7 @@ package battleship;
 
 public class TestComments {
 
-    public boolean isLargeFile(long bytes) {
-        return bytes > 1048576;
+    public boolean checkValue(int value) {
+        return value > 1048576;
     }
 }

@@ -4,10 +4,9 @@ linter: jetbrains/qodana-jvm-community:2026.2
 projectJDK: 25
 
 profile:
-  name: empty
-
+  name: qodana.recommended
   inspections:
-    - inspection: MagicCharacter
+    - inspection: MagicNumber
       enabled: true
       severity: ERROR
 
