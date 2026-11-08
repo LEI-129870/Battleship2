@@ -1,35 +1,25 @@
-
-name: Qodana smell gate 129849
-
+name: Qodana
 on:
   pull_request:
-    branches: [ main ]
-  push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  checks: write
+  contents: write
   pull-requests: write
+  checks: write
 
 jobs:
   qodana:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
-      - name: Prepare Qodana configuration
-        run: cp qodana-129849.yaml qodana.yaml
-
-      - name: Run Qodana Scan
-        uses: JetBrains/qodana-action@v2026.2
+      - name: Qodana Scan
+        uses: JetBrains/qodana-action@v2025.2
         with:
-          args: --fail-threshold 1
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+          args: --config,qodana-129849.yaml
+          pr-mode: false

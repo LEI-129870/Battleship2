@@ -1,8 +1,12 @@
 package battleship;
 
 public class TestComments {
-
-    public boolean checkValue(int value) {
-        return value > 1048576;
-    }
+// int x = 5;
+// System.out.println(x);
+    // int x = 5;
+// System.out.println(x);
+    // int x = 5;
+// System.out.println(x);
+    // int x = 5;
+// System.out.println(x);
 }

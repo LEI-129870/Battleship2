@@ -1,15 +1,9 @@
+# 129849
 version: "1.0"
-
 linter: jetbrains/qodana-jvm-community:2026.2
-projectJDK: 25
-
+projectJDK: 21
 profile:
-  name: qodana.recommended
-  inspections:
-    - inspection: MagicNumber
-      enabled: true
-      severity: ERROR
-
+  path: .qodana/profiles/profile-129849.yaml
 failureConditions:
   severityThresholds:
     any: 0

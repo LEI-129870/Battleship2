@@ -1,9 +1,8 @@
-name: profile-129849
-
-base:
-  name: empty
-
+name: "profile-129849"
+baseProfile: empty
 inspections:
-  - inspection: MagicNumber
+  - inspection: CommentedOutCode
     enabled: true
-    severity: ERROR
+    severity: WARNING
+    options:
+      minLines: 1
