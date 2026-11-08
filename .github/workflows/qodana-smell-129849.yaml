@@ -30,6 +30,6 @@ jobs:
       - name: Run Qodana Comments Code Smell
         uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --fail-threshold,1
+          args: --fail-threshold 1
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
