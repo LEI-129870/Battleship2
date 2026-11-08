@@ -1,6 +1,11 @@
 name: profile-129849
 baseProfile: empty
+
 inspections:
   - name: UnnecessaryLocalVariable
+    enabled: true
+    severity: ERROR
+
+  - name: UnusedDeclaration
     enabled: true
     severity: ERROR
