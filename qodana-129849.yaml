@@ -1,0 +1,16 @@
+# 129849
+version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: 21
+profile:
+  path: .qodana/profiles/profile-129849.yaml
+exclude:
+  - name: CommentedOutCode
+    paths:
+      - src/test/java/battleship/PositionTest.java
+      - src/main/java/battleship/Fleet.java
+      - src/main/java/battleship/Position.java
+      - src/main/java/battleship/Game.java
+failureConditions:
+  severityThresholds:
+    any: 0

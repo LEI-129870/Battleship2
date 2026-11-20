@@ -17,6 +17,13 @@ public class Internacionalizacao {
         messages = ResourceBundle.getBundle("messages", currentLocale);
     }
 
+    private int calcularNumeros(){
+        int pontos = 10;
+        return pontos;
+    }
+
+    private static final int VALOR_LIMITE_PONTOS = 100;
+
     public static String getMessage(String key, Object... args) {
         if (messages == null || !messages.containsKey(key)) {
             return key;

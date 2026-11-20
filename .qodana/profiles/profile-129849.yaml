@@ -1,0 +1,8 @@
+name: "profile-129849"
+baseProfile: empty
+inspections:
+  - inspection: CommentedOutCode
+    enabled: true
+    severity: WARNING
+    options:
+      minLines: 1
