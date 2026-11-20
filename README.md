@@ -144,6 +144,11 @@ We use high-coverage unit testing to ensure game stability. Run tests using:
 mvn test
 ```
 
+## Integração Contínua (CI) e Testes Unitários
+A pipeline de testes unitários está configurada via GitHub Actions (utilizando o Apache Maven e JDK 17) para garantir a validação automática em cada *push* e *pull request* efetuados nos ramos de trabalho.
+- **Execução local:** `mvn clean test`
+- **Framework:** JUnit 5
+
 > [!TIP]
 > Use the `-Dtest=ClassName` flag to run specific test suites during development.
 
