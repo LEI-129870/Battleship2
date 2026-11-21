@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InternacionalizacaoTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">battleship in BattleshipGamePlayer Coverage Results</a> &gt; <a href="index.source.html" class="el_package">battleship</a> &gt; <span class="el_source">InternacionalizacaoTest.java</span></div><h1>InternacionalizacaoTest.java</h1><pre class="source lang-java linenums">package battleship;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test class for class Internacionalizacao.
+ * Author: 129849
+ * Date: 2026-11-20 13:40
+ * Cyclomatic Complexity:
+ * - constructor (default): 1
+ * - static initializer: 1
+ * - setLanguage(String): 1
+ * - calcularNumeros() [private]: 1
+ * - getMessage(String, Object...): 3
+ * - getCurrentLocale(): 1
+ */
+@DisplayName(&quot;Testes unitários da classe Internacionalizacao&quot;)
+<span class="fc" id="L29">class InternacionalizacaoTest {</span>
+
+    private Internacionalizacao internacionalizacao;
+
+    @BeforeEach
+    void setUp() {
+<span class="fc" id="L35">        internacionalizacao = new Internacionalizacao();</span>
+        // O estado da classe é estático: garantir que cada teste começa em português
+<span class="fc" id="L37">        Internacionalizacao.setLanguage(&quot;pt&quot;);</span>
+<span class="fc" id="L38">    }</span>
+
+    @AfterEach
+    void tearDown() {
+        // Repor o idioma por omissão para não afetar outras classes de teste (ex.: Game, Tasks)
+<span class="fc" id="L43">        Internacionalizacao.setLanguage(&quot;pt&quot;);</span>
+<span class="fc" id="L44">        internacionalizacao = null;</span>
+<span class="fc" id="L45">    }</span>
+
+    // ---------------------------------------------------------------------
+    // constructor / static initializer
+    // ---------------------------------------------------------------------
+
+    @Test
+    @DisplayName(&quot;Construtor por omissão cria uma instância não nula&quot;)
+    void constructor() {
+<span class="fc" id="L54">        assertNotNull(internacionalizacao,</span>
+                &quot;Error: expected a non-null Internacionalizacao instance but got null&quot;);
+<span class="fc" id="L56">    }</span>
+
+    @Test
+    @DisplayName(&quot;Inicializador estático define o português como idioma por omissão&quot;)
+    void staticInitializer() throws Exception {
+        // O bloco static já correu quando a classe foi carregada; verificamos o seu efeito
+<span class="fc" id="L62">        Field messagesField = Internacionalizacao.class.getDeclaredField(&quot;messages&quot;);</span>
+<span class="fc" id="L63">        messagesField.setAccessible(true);</span>
+<span class="fc" id="L64">        ResourceBundle bundle = (ResourceBundle) messagesField.get(null);</span>
+
+<span class="fc" id="L66">        assertAll(&quot;Estado inicial em português&quot;,</span>
+<span class="fc" id="L67">                () -&gt; assertNotNull(bundle,</span>
+                        &quot;Error: expected a loaded ResourceBundle but got null&quot;),
+<span class="fc" id="L69">                () -&gt; assertEquals(&quot;pt&quot;, Internacionalizacao.getCurrentLocale().getLanguage(),</span>
+                        &quot;Error: expected default language 'pt' but got '&quot;
+<span class="fc" id="L71">                                + Internacionalizacao.getCurrentLocale().getLanguage() + &quot;'&quot;),</span>
+<span class="fc" id="L72">                () -&gt; assertEquals(&quot;Bons ventos!&quot;, Internacionalizacao.getMessage(&quot;menu.goodbye&quot;),</span>
+                        &quot;Error: expected the Portuguese message 'Bons ventos!' but got '&quot;
+<span class="fc" id="L74">                                + Internacionalizacao.getMessage(&quot;menu.goodbye&quot;) + &quot;'&quot;));</span>
+<span class="fc" id="L75">    }</span>
+
+    // ---------------------------------------------------------------------
+    // setLanguage(String) — CC = 1
+    // ---------------------------------------------------------------------
+
+    @Test
+    @DisplayName(&quot;setLanguage(\&quot;en\&quot;) muda o locale e as mensagens para inglês&quot;)
+    void setLanguage() {
+<span class="fc" id="L84">        Internacionalizacao.setLanguage(&quot;en&quot;);</span>
+
+<span class="fc" id="L86">        assertAll(&quot;Mudança para inglês&quot;,</span>
+<span class="fc" id="L87">                () -&gt; assertEquals(Locale.forLanguageTag(&quot;en&quot;), Internacionalizacao.getCurrentLocale(),</span>
+<span class="fc" id="L88">                        &quot;Error: expected locale 'en' but got '&quot; + Internacionalizacao.getCurrentLocale() + &quot;'&quot;),</span>
+<span class="fc" id="L89">                () -&gt; assertEquals(&quot;Fair winds!&quot;, Internacionalizacao.getMessage(&quot;menu.goodbye&quot;),</span>
+                        &quot;Error: expected the English message 'Fair winds!' but got '&quot;
+<span class="fc" id="L91">                                + Internacionalizacao.getMessage(&quot;menu.goodbye&quot;) + &quot;'&quot;));</span>
+<span class="fc" id="L92">    }</span>
+
+    @Test
+    @DisplayName(&quot;setLanguage(null) lança NullPointerException&quot;)
+    void setLanguageThrowsNullPointerException() {
+<span class="fc" id="L97">        assertThrows(NullPointerException.class,</span>
+<span class="nc" id="L98">                () -&gt; Internacionalizacao.setLanguage(null),</span>
+                &quot;Error: expected NullPointerException for a null language code but none was thrown&quot;);
+<span class="fc" id="L100">    }</span>
+
+    @Test
+    @DisplayName(&quot;setLanguage com idioma sem ficheiro de mensagens lança MissingResourceException&quot;)
+    void setLanguageThrowsMissingResourceException() {
+        // Sem messages.properties base, o fallback é o Locale por omissão da JVM.
+        // Fixamos um Locale por omissão sem bundle para o teste ser determinístico.
+<span class="fc" id="L107">        Locale originalDefault = Locale.getDefault();</span>
+        try {
+<span class="fc" id="L109">            Locale.setDefault(Locale.JAPAN);</span>
+<span class="fc" id="L110">            assertThrows(MissingResourceException.class,</span>
+<span class="nc" id="L111">                    () -&gt; Internacionalizacao.setLanguage(&quot;de&quot;),</span>
+                    &quot;Error: expected MissingResourceException for language 'de' (no bundle) but none was thrown&quot;);
+        } finally {
+<span class="fc" id="L114">            Locale.setDefault(originalDefault);</span>
+        }
+<span class="fc" id="L116">    }</span>
+
+    // ---------------------------------------------------------------------
+    // calcularNumeros() [private] — CC = 1
+    // ---------------------------------------------------------------------
+
+    @Test
+    @DisplayName(&quot;calcularNumeros() (privado) devolve 10&quot;)
+    void calcularNumeros() throws Exception {
+        // Método privado e não utilizado: testado por reflexão apenas para cobertura.
+        // Se for removido na Parte 2 (Safe Delete), este teste deve ser apagado também.
+<span class="fc" id="L127">        Method method = Internacionalizacao.class.getDeclaredMethod(&quot;calcularNumeros&quot;);</span>
+<span class="fc" id="L128">        method.setAccessible(true);</span>
+<span class="fc" id="L129">        int result = (int) method.invoke(internacionalizacao);</span>
+
+<span class="fc" id="L131">        assertEquals(10, result, &quot;Error: expected 10 but got &quot; + result);</span>
+<span class="fc" id="L132">    }</span>
+
+    // ---------------------------------------------------------------------
+    // getMessage(String, Object...) — CC = 3
+    // if (messages == null || !messages.containsKey(key)) return key;
+    // ---------------------------------------------------------------------
+
+    @Test
+    @DisplayName(&quot;getMessage devolve a própria chave quando messages é null (1ª condição verdadeira)&quot;)
+    void getMessage1() throws Exception {
+<span class="fc" id="L142">        Field messagesField = Internacionalizacao.class.getDeclaredField(&quot;messages&quot;);</span>
+<span class="fc" id="L143">        messagesField.setAccessible(true);</span>
+<span class="fc" id="L144">        messagesField.set(null, null);</span>
+
+<span class="fc" id="L146">        String result = Internacionalizacao.getMessage(&quot;menu.goodbye&quot;);</span>
+
+<span class="fc" id="L148">        assertEquals(&quot;menu.goodbye&quot;, result,</span>
+                &quot;Error: expected the key 'menu.goodbye' to be returned when messages is null but got '&quot; + result + &quot;'&quot;);
+        // O @AfterEach volta a carregar o bundle com setLanguage(&quot;pt&quot;)
+<span class="fc" id="L151">    }</span>
+
+    @Test
+    @DisplayName(&quot;getMessage devolve a própria chave quando esta não existe (1ª falsa, 2ª verdadeira)&quot;)
+    void getMessage2() {
+<span class="fc" id="L156">        String result = Internacionalizacao.getMessage(&quot;chave.que.nao.existe&quot;);</span>
+
+<span class="fc" id="L158">        assertEquals(&quot;chave.que.nao.existe&quot;, result,</span>
+                &quot;Error: expected the missing key 'chave.que.nao.existe' to be returned but got '&quot; + result + &quot;'&quot;);
+<span class="fc" id="L160">    }</span>
+
+    @Test
+    @DisplayName(&quot;getMessage devolve a mensagem formatada quando a chave existe (ambas as condições falsas)&quot;)
+    void getMessage3() {
+<span class="fc" id="L165">        String semArgumentos = Internacionalizacao.getMessage(&quot;menu.goodbye&quot;);</span>
+<span class="fc" id="L166">        String umArgumento = Internacionalizacao.getMessage(&quot;log.fleet.success&quot;, 5);</span>
+<span class="fc" id="L167">        String tresArgumentos = Internacionalizacao.getMessage(&quot;log.fleet.fail&quot;, &quot;Galeao&quot;, &quot;A1&quot;, &quot;N&quot;);</span>
+
+<span class="fc" id="L169">        assertAll(&quot;Mensagens existentes e formatadas&quot;,</span>
+<span class="fc" id="L170">                () -&gt; assertEquals(&quot;Bons ventos!&quot;, semArgumentos,</span>
+                        &quot;Error: expected 'Bons ventos!' but got '&quot; + semArgumentos + &quot;'&quot;),
+<span class="fc" id="L172">                () -&gt; assertEquals(&quot;5 navios adicionados com sucesso!&quot;, umArgumento,</span>
+                        &quot;Error: expected '5 navios adicionados com sucesso!' but got '&quot; + umArgumento + &quot;'&quot;),
+<span class="fc" id="L174">                () -&gt; assertTrue(tresArgumentos.endsWith(&quot;Galeao A1 N&quot;),</span>
+                        &quot;Error: expected message ending with 'Galeao A1 N' but got '&quot; + tresArgumentos + &quot;'&quot;),
+<span class="fc" id="L176">                () -&gt; assertFalse(tresArgumentos.contains(&quot;{0}&quot;),</span>
+                        &quot;Error: expected placeholders to be replaced but got '&quot; + tresArgumentos + &quot;'&quot;));
+<span class="fc" id="L178">    }</span>
+
+    // ---------------------------------------------------------------------
+    // getCurrentLocale() — CC = 1
+    // ---------------------------------------------------------------------
+
+    @Test
+    @DisplayName(&quot;getCurrentLocale devolve o locale definido por setLanguage&quot;)
+    void getCurrentLocale() {
+<span class="fc" id="L187">        Locale locale = Internacionalizacao.getCurrentLocale();</span>
+
+<span class="fc" id="L189">        assertAll(&quot;Locale atual&quot;,</span>
+<span class="fc" id="L190">                () -&gt; assertNotNull(locale, &quot;Error: expected a non-null Locale but got null&quot;),</span>
+<span class="fc" id="L191">                () -&gt; assertEquals(Locale.forLanguageTag(&quot;pt&quot;), locale,</span>
+                        &quot;Error: expected locale 'pt' but got '&quot; + locale + &quot;'&quot;));
+<span class="fc" id="L193">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

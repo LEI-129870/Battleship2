@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PdfExporter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">battleship in BattleshipGamePlayer Coverage Results</a> &gt; <a href="index.source.html" class="el_package">battleship</a> &gt; <span class="el_source">PdfExporter.java</span></div><h1>PdfExporter.java</h1><pre class="source lang-java linenums">
+package battleship;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+
+import java.io.IOException;
+import java.util.List;
+
+<span class="fc" id="L13">public class PdfExporter {</span>
+
+    public static void exportarJogadas(
+            List&lt;IMove&gt; jogadas,
+            String nomeFicheiro) throws IOException {
+
+<span class="fc" id="L19">        try (PDDocument documento = new PDDocument()) {</span>
+
+<span class="fc" id="L21">            PDPage pagina = new PDPage();</span>
+<span class="fc" id="L22">            documento.addPage(pagina);</span>
+
+<span class="fc" id="L24">            PDPageContentStream conteudo =</span>
+                    new PDPageContentStream(documento, pagina);
+
+<span class="fc" id="L27">            float y = 750;</span>
+
+            try {
+<span class="fc" id="L30">                conteudo.beginText();</span>
+<span class="fc" id="L31">                conteudo.setFont(</span>
+                        new PDType1Font(Standard14Fonts.FontName.HELVETICA),
+                        12
+                );
+<span class="fc" id="L35">                conteudo.newLineAtOffset(50, y);</span>
+
+                // Titulo do documento
+<span class="fc" id="L38">                conteudo.showText(&quot;Historico de Jogadas - Battleship&quot;);</span>
+<span class="fc" id="L39">                conteudo.newLineAtOffset(0, -30);</span>
+<span class="fc" id="L40">                y -= 30;</span>
+
+                // Cada jogada vai ter um nº de disparos
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                for (IMove jogada : jogadas) {</span>
+
+                    // Ve se a pagina ja ta a acabar e cria outra
+                    // o documento é o mm muda se é a pagina e o conteudo
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                    if (y &lt; 50) {</span>
+<span class="fc" id="L48">                        conteudo.endText();</span>
+<span class="fc" id="L49">                        conteudo.close();</span>
+
+<span class="fc" id="L51">                        pagina = new PDPage();</span>
+<span class="fc" id="L52">                        documento.addPage(pagina);</span>
+
+<span class="fc" id="L54">                        conteudo = new PDPageContentStream(documento, pagina);</span>
+<span class="fc" id="L55">                        conteudo.beginText();</span>
+<span class="fc" id="L56">                        conteudo.setFont(</span>
+                                new PDType1Font(
+                                        Standard14Fonts.FontName.HELVETICA
+                                ),
+                                12
+                        );
+<span class="fc" id="L62">                        conteudo.newLineAtOffset(50, 750);</span>
+<span class="fc" id="L63">                        y = 750;</span>
+                    }
+
+<span class="fc" id="L66">                    conteudo.showText(&quot;Jogada &quot; + jogada.getNumber());</span>
+<span class="fc" id="L67">                    conteudo.newLineAtOffset(0, -20);</span>
+<span class="fc" id="L68">                    y -= 20;</span>
+
+                    // agora vê se os disparos da jogada que está a ser verificada
+<span class="fc bfc" id="L71" title="All 2 branches covered.">                    for (int i = 0; i &lt; jogada.getShots().size(); i++) {</span>
+
+                        // mm coisa que no ciclo exterior
+<span class="fc bfc" id="L74" title="All 2 branches covered.">                        if (y &lt; 50) {</span>
+<span class="fc" id="L75">                            conteudo.endText();</span>
+<span class="fc" id="L76">                            conteudo.close();</span>
+
+<span class="fc" id="L78">                            pagina = new PDPage();</span>
+<span class="fc" id="L79">                            documento.addPage(pagina);</span>
+
+<span class="fc" id="L81">                            conteudo = new PDPageContentStream(</span>
+                                    documento, pagina
+                            );
+
+<span class="fc" id="L85">                            conteudo.beginText();</span>
+<span class="fc" id="L86">                            conteudo.setFont(</span>
+                                    new PDType1Font(
+                                            Standard14Fonts.FontName.HELVETICA
+                                    ),
+                                    12
+                            );
+<span class="fc" id="L92">                            conteudo.newLineAtOffset(50, 750);</span>
+<span class="fc" id="L93">                            y = 750;</span>
+                        }
+
+<span class="fc" id="L96">                        IPosition disparo = jogada.getShots().get(i);</span>
+
+                        // Converter a posicao para coordenadas
+<span class="fc" id="L99">                        String coordenada =</span>
+<span class="fc" id="L100">                                &quot;&quot; + disparo.getClassicRow()</span>
+<span class="fc" id="L101">                                        + disparo.getClassicColumn();</span>
+
+                        // Obter o resultado do disparo
+<span class="fc" id="L104">                        String resultado = &quot;Sem resultado&quot;;</span>
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">                        if (i &lt; jogada.getShotResults().size()) {</span>
+<span class="fc" id="L107">                            resultado = obterResultado(</span>
+<span class="fc" id="L108">                                    jogada.getShotResults().get(i)</span>
+                            );
+                        }
+
+
+<span class="fc" id="L113">                        conteudo.showText(</span>
+                                &quot;Disparo: &quot; + coordenada + &quot; - &quot; + resultado
+                        );
+
+<span class="fc" id="L117">                        conteudo.newLineAtOffset(0, -20);</span>
+<span class="fc" id="L118">                        y -= 20;</span>
+                    }
+
+<span class="fc" id="L121">                    conteudo.newLineAtOffset(0, -20);</span>
+<span class="fc" id="L122">                    y -= 20;</span>
+<span class="fc" id="L123">                }</span>
+
+<span class="fc" id="L125">                conteudo.endText();</span>
+
+            } finally {
+<span class="fc" id="L128">                conteudo.close();</span>
+            }
+
+            // Guardar o ficheiro com o nome dado
+<span class="fc" id="L132">            documento.save(nomeFicheiro);</span>
+        }
+<span class="fc" id="L134">    }</span>
+
+    // Converter o resultado do disparo para texto
+    private static String obterResultado(IGame.ShotResult resultado) {
+
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (!resultado.valid()) {</span>
+<span class="fc" id="L140">            return &quot;Disparo invalido&quot;;</span>
+        }
+
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (resultado.repeated()) {</span>
+<span class="fc" id="L144">            return &quot;Disparo repetido&quot;;</span>
+        }
+
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (resultado.ship() == null) {</span>
+<span class="fc" id="L148">            return &quot;Agua&quot;;</span>
+        }
+
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (resultado.sunk()) {</span>
+<span class="fc" id="L152">            return &quot;Navio afundado&quot;;</span>
+        }
+
+<span class="fc" id="L155">        return &quot;Acertou&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
