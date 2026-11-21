@@ -28,7 +28,10 @@ public class GameTest {
 	void constructor() {
 		assertNotNull(game, "Game instance should not be null after construction.");
 		assertNotNull(game.getAlienMoves(), "Shots list should not be null after initialization.");
+		assertNotNull(game.getMyMoves(), "My moves list should not be null after initialization.");
+		assertNotNull(game.getAlienFleet(), "Alien fleet should not be null after initialization.");
 		assertTrue(game.getAlienMoves().isEmpty(), "Shots list should be empty upon initialization.");
+		assertTrue(game.getMyMoves().isEmpty(), "My moves list should be empty upon initialization.");
 		assertEquals(0, game.getInvalidShots(), "Invalid shots count should be zero upon initialization.");
 		assertEquals(0, game.getRepeatedShots(), "Repeated shots count should be zero upon initialization.");
 		assertEquals(0, game.getHits(), "Hits count should be zero upon initialization.");
@@ -145,6 +148,23 @@ public class GameTest {
 	}
 
 	@Test
+	@DisplayName("Testa disparo aleatório do inimigo quando restam menos de 3 posições livres no tabuleiro")
+	void testRandomEnemyFire_AlmostFullBoard() {
+		// Preenche 98 das 100 posições do tabuleiro para sobrarem apenas 2 posições livres (< NUMBER_SHOTS)
+		for (int r = 0; r < Game.BOARD_SIZE; r++) {
+			for (int c = 0; c < Game.BOARD_SIZE; c++) {
+				if (r == 9 && c >= 8) {
+					continue; // Deixa apenas (9,8) e (9,9) livres
+				}
+				game.fireShots(List.of(new Position(r, c), new Position(r, c), new Position(r, c)));
+			}
+		}
+
+		String jsonResult = game.randomEnemyFire();
+		assertNotNull(jsonResult, "O JSON retornado não deve ser nulo mesmo com poucas posições livres.");
+	}
+
+	@Test
 	@DisplayName("Testa a impressão dos tabuleiros e mensagem de fim de jogo")
 	void testPrintBoardsAndOver() {
 		assertDoesNotThrow(() -> {
@@ -185,14 +205,22 @@ public class GameTest {
 	}
 
 	@Test
-	@DisplayName("Testa a impressão detalhada do tabuleiro com tiros e legenda ativados")
-	void testPrintBoardDetailed() {
-		List<IPosition> positions = List.of(new Position(0, 0), new Position(0, 1), new Position(0, 2));
-		game.fireShots(positions);
+	@DisplayName("Testa a impressão detalhada do tabuleiro com navios afundados, acertos, água e tiros fora")
+	void testPrintBoardDetailedWithSunkShipsAndHits() {
+		IFleet fleet = game.getMyFleet();
+		Ship barge = new Barge(Compass.NORTH, new Position(2, 2)); // Vai ser afundado
+		Ship frigate = new Frigate(Compass.EAST, new Position(6, 2)); // Vai ser atingido parcialmente
+		fleet.addShip(barge);
+		fleet.addShip(frigate);
+
+		// Dispara no Barge (afunda), no Frigate (acerto) e numa posição fora do tabuleiro (-1, -1)
+		game.fireShots(List.of(new Position(2, 2), new Position(6, 2), new Position(-1, -1)));
+		// Dispara na água e numa posição adjacente ao Barge afundado (2, 3)
+		game.fireShots(List.of(new Position(0, 0), new Position(2, 3), new Position(8, 8)));
 
 		assertDoesNotThrow(() -> {
 			Game.printBoard(game.getMyFleet(), game.getAlienMoves(), true, true);
-		}, "A impressão do tabuleiro com tiros e legenda não deve lançar exceções.");
+		}, "A impressão do tabuleiro com navios afundados, adjacentes, acertos e tiros fora não deve lançar exceções.");
 	}
 
 	@Test
@@ -212,5 +240,16 @@ public class GameTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			game.readEnemyFire(scanner);
 		}, "Deve lançar exceção se o número de posições fornecidas for inferior a NUMBER_SHOTS.");
+	}
+
+	@Test
+	@DisplayName("Testa fireSingleShot explicitamente com tiro repetido (isRepeated = true)")
+	void testFireSingleShot_ExplicitlyRepeated() {
+		Position pos = new Position(3, 3);
+		game.fireSingleShot(pos, false);
+		var result = game.fireSingleShot(pos, true);
+
+		assertNotNull(result, "O resultado do tiro não deve ser nulo.");
+		assertEquals(1, game.getRepeatedShots(), "O contador de tiros repetidos deve ser 1.");
 	}
 }
