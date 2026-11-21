@@ -3,6 +3,7 @@ package battleship;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -221,6 +222,19 @@ public class Game implements IGame
 	 */
 	public String randomEnemyFire() {
 
+		List<IPosition> shots = generateRandomShots();
+
+		System.out.print("rajada ");
+		for (IPosition shot : shots)
+			System.out.print(shot + " ");
+		System.out.println();
+
+		this.fireShots(shots);
+
+		return Game.jsonShots(shots);
+	}
+
+	private @NotNull List<IPosition> generateRandomShots() {
 		// Criar uma instância de Random com uma seed baseada no timestamp atual
 		Random random = new Random(System.currentTimeMillis());
 
@@ -256,15 +270,7 @@ public class Game implements IGame
 			while (shots.size() < Game.NUMBER_SHOTS)
 				shots.add(newShot);
 		}
-
-		System.out.print("rajada ");
-		for (IPosition shot : shots)
-			System.out.print(shot + " ");
-		System.out.println();
-
-		this.fireShots(shots);
-
-		return Game.jsonShots(shots);
+		return shots;
 	}
 
 
@@ -376,7 +382,8 @@ public class Game implements IGame
 			return new ShotResult(false, false, null, false);
 		}
 
-		if (isRepeated || repeatedShot(pos)) {
+		boolean isShotRepeated = isRepeated || repeatedShot(pos);
+		if (isShotRepeated) {
 			countRepeatedShots++;
 			return new ShotResult(true, true, null, false);
 		}
