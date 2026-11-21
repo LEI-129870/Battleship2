@@ -6,4 +6,4 @@
 | `Game::fireSingleShot` | Complex Expression | Extract Variable | 129870 |
 | `GameTimer::endTurn` | Magic Numbers | Introduce Constant | 129870 |
 | `Frigate` | Duplicated Code | Pull Members Up | 129870 |
-| `Scoreboard::showScoreboard` | Complex Expression / Long Statement | Extract Variable | 129870 |
+| `Scoreboard::showScoreboard` | Unnecessary Temporary Variable | Inline Variable | 129870 |
