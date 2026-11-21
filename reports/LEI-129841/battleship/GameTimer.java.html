@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameTimer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">battleship in BattleshipGamePlayer Coverage Results</a> &gt; <a href="index.source.html" class="el_package">battleship</a> &gt; <span class="el_source">GameTimer.java</span></div><h1>GameTimer.java</h1><pre class="source lang-java linenums">package battleship;
+
+import org.apache.commons.lang3.time.StopWatch;
+
+public class GameTimer {
+    private StopWatch stopWatch;
+
+<span class="nc" id="L8">    public GameTimer() {</span>
+<span class="nc" id="L9">        this.stopWatch = new StopWatch();</span>
+<span class="nc" id="L10">    }</span>
+
+    public void startTurn() {
+<span class="nc" id="L13">        stopWatch.reset();</span>
+<span class="nc" id="L14">        stopWatch.start();</span>
+<span class="nc" id="L15">    }</span>
+
+    public void endTurn() {
+<span class="nc" id="L18">        stopWatch.stop();</span>
+<span class="nc" id="L19">        long timeInMillis = stopWatch.getTime();</span>
+<span class="nc" id="L20">        System.out.println(&quot;Tempo gasto nesta jogada: &quot; + timeInMillis + &quot; ms (&quot; + (timeInMillis / 1000.0) + &quot; segundos).&quot;);</span>
+<span class="nc" id="L21">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
