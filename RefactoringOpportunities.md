@@ -4,6 +4,6 @@
 | :--- | :--- | :--- | :--- |
 | `Game::randomEnemyFire` | Long Method | Extract Method | 129870 |
 | `Game.java` | Long Parameter List | Introduce Parameter Object | 129870 |
-| `GameTimer` | Public Field | Encapsulate Fields | 129870 |
+| `GameTimer::endTurn` | Magic Numbers | Introduce Constant | 129870 |
 | `Frigate` | Duplicated Code | Pull Members Up | 129870 |
-| `Scoreboard` | Magic Numbers / Strings | Introduce Constant | 129870 |
+| `Scoreboard::showScoreboard` | Duplicated String Literal | Introduce Constant | 129870 |
