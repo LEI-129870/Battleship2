@@ -1,3 +1,5 @@
+# Refactoring Opportunities
+
 | Local | Nome do cheiro no código | Nome da refabricação | Número de aluno |
 | :--- | :--- | :--- | :--- |
 | `Game::randomEnemyFire` | Long Method | Extract Method | 129870 |
