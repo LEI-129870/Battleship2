@@ -58,11 +58,8 @@ public class Scoreboard {
             System.out.println("------------------------------------");
 
             for (CSVRecord record : csvParser) {
-                String player = record.get("Player");
-                String score = record.get("Score");
-                String shots = record.get("Shots");
 
-                System.out.printf("%-15s %-10s %-10s%n", player, score, shots);
+                System.out.printf("%-15s %-10s %-10s%n", record.get("Player"), record.get("Score"), record.get("Shots"));
             }
             System.out.println("------------------------------------\n");
 
