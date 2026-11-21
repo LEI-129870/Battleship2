@@ -122,4 +122,19 @@ class CaravelTest {
 		assertEquals("Ship's bearing must not be null", exception2.getMessage(),
 				"Error: The exception message does not match the expected value.");
 	}
+
+
+	@Test
+	@DisplayName("Constructor - Null position throws exception")
+	void constructorNullPosition() {
+		NullPointerException exception = assertThrows(
+				NullPointerException.class,
+				() -> new Caravel(Compass.NORTH, null),
+				"Error: Expected NullPointerException for null position.");
+
+		assertEquals("Ship's position must not be null",
+				exception.getMessage(),
+				"Error: Expected null position exception message.");
+	}
+
 }
