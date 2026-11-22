@@ -6,6 +6,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -97,8 +98,7 @@ public class PdfExporter {
 
                         // Converter a posicao para coordenadas
                         String coordenada =
-                                "" + disparo.getClassicRow()
-                                        + disparo.getClassicColumn();
+                                getCoordenada(disparo);
 
                         // Obter o resultado do disparo
                         String resultado = "Sem resultado";
@@ -131,6 +131,11 @@ public class PdfExporter {
             // Guardar o ficheiro com o nome dado
             documento.save(nomeFicheiro);
         }
+    }
+
+    private static @NotNull String getCoordenada(IPosition disparo) {
+        return "" + disparo.getClassicRow()
+                + disparo.getClassicColumn();
     }
 
     // Converter o resultado do disparo para texto
