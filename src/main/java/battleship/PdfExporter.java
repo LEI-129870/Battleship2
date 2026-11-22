@@ -6,11 +6,14 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
 
 public class PdfExporter {
+
+    public static final int Y = 750;
 
     public static void exportarJogadas(
             List<IMove> jogadas,
@@ -24,7 +27,7 @@ public class PdfExporter {
             PDPageContentStream conteudo =
                     new PDPageContentStream(documento, pagina);
 
-            float y = 750;
+            float y = Y;
 
             try {
                 conteudo.beginText();
@@ -59,8 +62,8 @@ public class PdfExporter {
                                 ),
                                 12
                         );
-                        conteudo.newLineAtOffset(50, 750);
-                        y = 750;
+                        conteudo.newLineAtOffset(50, Y);
+                        y = Y;
                     }
 
                     conteudo.showText("Jogada " + jogada.getNumber());
@@ -89,16 +92,15 @@ public class PdfExporter {
                                     ),
                                     12
                             );
-                            conteudo.newLineAtOffset(50, 750);
-                            y = 750;
+                            conteudo.newLineAtOffset(50, Y);
+                            y = Y;
                         }
 
                         IPosition disparo = jogada.getShots().get(i);
 
                         // Converter a posicao para coordenadas
                         String coordenada =
-                                "" + disparo.getClassicRow()
-                                        + disparo.getClassicColumn();
+                                getCoordenada(disparo);
 
                         // Obter o resultado do disparo
                         String resultado = "Sem resultado";
@@ -131,6 +133,11 @@ public class PdfExporter {
             // Guardar o ficheiro com o nome dado
             documento.save(nomeFicheiro);
         }
+    }
+
+    private static @NotNull String getCoordenada(IPosition disparo) {
+        return "" + disparo.getClassicRow()
+                + disparo.getClassicColumn();
     }
 
     // Converter o resultado do disparo para texto
