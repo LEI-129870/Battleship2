@@ -13,3 +13,10 @@
 | `Fleet::printShips` | Feature Envy (MethodMayBeStatic) | Make Static | 129849 |
 | `Fleet::printShips` (parâmetro `ships` esconde o atributo) | Confusing Parameter Name | Change Signature | 129849 |
 | `IFleet::FLEET_SIZE` | Unnecessary Boxing (`Integer` em vez de `int`) | Type Migration | 129849 |
+| `Move::isValid` | Magic Number | Introduce Constant | 129829 |
+| `Scoreboard::updateScore` | Long Method | Extract Method | 129829 |
+| `Carrack::armor` | Public Field | Encapsulate Field | 129829 |
+| `Battleship` | Unused Private Field | Safe Delete | 129829 |
+| `Move` | Literal repetition | Extract Constant | 129829 |
+| `Game::initializeGame` | Complex Condition | Decompose Conditional | 129829 |
+| `BattleshipGamePlayer` (parâmetro `x`) | Cryptic Parameter Name | Rename | 129829 |
