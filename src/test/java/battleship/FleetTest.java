@@ -439,7 +439,7 @@ public class FleetTest {
 	@DisplayName("printShips não imprime nada para uma lista vazia")
 	void printShips1() {
 		captureOutput();
-		fleet.printShips(new ArrayList<>());
+		Fleet.printShips(new ArrayList<>());
 		assertEquals("", output(), "Error: expected no output for an empty list but got '" + output() + "'");
 	}
 
@@ -449,7 +449,7 @@ public class FleetTest {
 		IShip b = new Barge(Compass.NORTH, new Position(1, 1));
 		IShip c = new Caravel(Compass.NORTH, new Position(4, 4));
 		captureOutput();
-		fleet.printShips(List.of(b, c));
+		Fleet.printShips(List.of(b, c));
 
 		String out = output();
 		assertAll("Impressão dos navios",
@@ -461,7 +461,7 @@ public class FleetTest {
 	@Test
 	@DisplayName("printShips(null) falha a asserção e lança AssertionError")
 	void printShipsNullThrowsAssertionError() {
-		assertThrows(AssertionError.class, () -> fleet.printShips(null),
+		assertThrows(AssertionError.class, () -> Fleet.printShips(null),
 				"Error: expected AssertionError for a null list but none was thrown");
 	}
 
