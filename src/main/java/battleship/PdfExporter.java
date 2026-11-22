@@ -13,6 +13,8 @@ import java.util.List;
 
 public class PdfExporter {
 
+    public static final int Y = 750;
+
     public static void exportarJogadas(
             List<IMove> jogadas,
             String nomeFicheiro) throws IOException {
@@ -25,7 +27,7 @@ public class PdfExporter {
             PDPageContentStream conteudo =
                     new PDPageContentStream(documento, pagina);
 
-            float y = 750;
+            float y = Y;
 
             try {
                 conteudo.beginText();
@@ -60,8 +62,8 @@ public class PdfExporter {
                                 ),
                                 12
                         );
-                        conteudo.newLineAtOffset(50, 750);
-                        y = 750;
+                        conteudo.newLineAtOffset(50, Y);
+                        y = Y;
                     }
 
                     conteudo.showText("Jogada " + jogada.getNumber());
@@ -90,8 +92,8 @@ public class PdfExporter {
                                     ),
                                     12
                             );
-                            conteudo.newLineAtOffset(50, 750);
-                            y = 750;
+                            conteudo.newLineAtOffset(50, Y);
+                            y = Y;
                         }
 
                         IPosition disparo = jogada.getShots().get(i);
