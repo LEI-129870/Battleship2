@@ -207,13 +207,13 @@ public class Fleet implements IFleet
 	/**
 	 * This operation prints all the given ships
 	 *
-	 * @param ships The list of ships
+	 * @param shipList The list of ships
 	 */
-	public static void printShips(List<IShip> ships)
+	public static void printShips(List<IShip> shipList)
 	{
-		assert ships != null;
+		assert shipList != null;
 
-		for (IShip ship : ships)
+		for (IShip ship : shipList)
 			System.out.println(ship);
 	}
 
