@@ -44,25 +44,24 @@ public class Scoreboard {
         File file = new File(FILE_PATH);
 
         if (!file.exists() || file.length() == 0) {
-            System.out.println("\nAinda não existem pontuações registadas.");
-            return;
-        }
+            System.out.println("Sem registos de pontuações.");
+        } else {
+            try (FileReader reader = new FileReader(file);
+                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.builder()
+                         .setHeader()
+                         .setSkipHeaderRecord(true)
+                         .build())) {
 
-        try (FileReader reader = new FileReader(file);
-             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.builder()
-                     .setHeader()
-                     .setSkipHeaderRecord(true)
-                     .build())) {
+                System.out.println(SCOREBOARD_TITLE());
+                System.out.printf("%-15s %-10s %-10s%n", "JOGADOR", "PONTOS", "TIROS");
+                System.out.println("----------------------------------------");
 
-            System.out.println(SCOREBOARD_TITLE());
-            System.out.printf("%-15s %-10s %-10s%n", "JOGADOR", "PONTOS", "TIROS");
-            System.out.println("------------------------------------");
+                printScoreboardRecords(csvParser);
+                System.out.println("----------------------------------------\n");
 
-            printScoreboardRecords(csvParser);
-            System.out.println("------------------------------------\n");
-
-        } catch (IOException e) {
-            System.err.println("Erro ao ler o scoreboard: " + e.getMessage());
+            } catch (IOException e) {
+                System.err.println("Erro ao ler o scoreboard: " + e.getMessage());
+            }
         }
     }
 
