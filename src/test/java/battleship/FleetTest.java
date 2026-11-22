@@ -23,7 +23,7 @@ import java.util.List;
  * - getFloatingShips(): 3
  * - getSunkShips(): 3
  * - shipAt(IPosition): 3
- * - colisionRisk(IShip) [private]: 3
+ * - isFarFromOtherShips(IShip) [private]: 3
  * - printShips(List): 2
  * - printStatus(): 1
  * - printShipsByCategory(String): 1
@@ -198,15 +198,15 @@ public class FleetTest {
 	@Test
 	@DisplayName("colisionRisk deteta navios sobrepostos e aceita navios afastados")
 	void testColisionRisk() throws Exception {
-		var method = Fleet.class.getDeclaredMethod("colisionRisk", IShip.class);
+		var method = Fleet.class.getDeclaredMethod("isFarFromOtherShips", IShip.class);
 		method.setAccessible(true);
 
 		IShip ship1 = new Barge(Compass.NORTH, new Position(1, 1));
 		IShip ship2 = new Barge(Compass.NORTH, new Position(1, 1));  // Overlapping position
 		fleet.addShip(ship1);
 
-		assertTrue((Boolean) method.invoke(fleet, ship2), "Error: Overlapping ships should be at collision risk.");
-		assertFalse((Boolean) method.invoke(fleet, new Barge(Compass.NORTH, new Position(5, 5))),
+		assertFalse((Boolean) method.invoke(fleet, ship2), "Error: Overlapping ships should be at collision risk.");
+		assertTrue((Boolean) method.invoke(fleet, new Barge(Compass.NORTH, new Position(5, 5))),
 				"Error: Ships at non-overlapping positions should not have a collision risk.");
 	}
 
@@ -402,28 +402,28 @@ public class FleetTest {
 	@Test
 	@DisplayName("colisionRisk devolve false quando a frota está vazia")
 	void colisionRisk1() throws Exception {
-		Method method = Fleet.class.getDeclaredMethod("colisionRisk", IShip.class);
+		Method method = Fleet.class.getDeclaredMethod("isFarFromOtherShips", IShip.class);
 		method.setAccessible(true);
 
 		boolean result = (Boolean) method.invoke(fleet, new Barge(Compass.NORTH, new Position(1, 1)));
-		assertFalse(result, "Error: expected no collision risk with an empty fleet but got true");
+		assertTrue(result, "Error: expected no collision risk with an empty fleet but got true");
 	}
 
 	@Test
 	@DisplayName("colisionRisk deteta um navio adjacente (não sobreposto)")
 	void colisionRisk2() throws Exception {
-		Method method = Fleet.class.getDeclaredMethod("colisionRisk", IShip.class);
+		Method method = Fleet.class.getDeclaredMethod("isFarFromOtherShips", IShip.class);
 		method.setAccessible(true);
 		fleet.addShip(new Barge(Compass.NORTH, new Position(1, 1)));
 
 		boolean result = (Boolean) method.invoke(fleet, new Barge(Compass.NORTH, new Position(2, 2)));
-		assertTrue(result, "Error: expected collision risk for a diagonally adjacent ship but got false");
+		assertFalse(result, "Error: expected collision risk for a diagonally adjacent ship but got false");
 	}
 
 	@Test
 	@DisplayName("colisionRisk(null) falha a asserção e lança AssertionError")
 	void colisionRiskNullThrowsAssertionError() throws Exception {
-		Method method = Fleet.class.getDeclaredMethod("colisionRisk", IShip.class);
+		Method method = Fleet.class.getDeclaredMethod("isFarFromOtherShips", IShip.class);
 		method.setAccessible(true);
 
 		InvocationTargetException ex = assertThrows(InvocationTargetException.class,
@@ -439,7 +439,7 @@ public class FleetTest {
 	@DisplayName("printShips não imprime nada para uma lista vazia")
 	void printShips1() {
 		captureOutput();
-		fleet.printShips(new ArrayList<>());
+		Fleet.printShips(new ArrayList<>());
 		assertEquals("", output(), "Error: expected no output for an empty list but got '" + output() + "'");
 	}
 
@@ -449,7 +449,7 @@ public class FleetTest {
 		IShip b = new Barge(Compass.NORTH, new Position(1, 1));
 		IShip c = new Caravel(Compass.NORTH, new Position(4, 4));
 		captureOutput();
-		fleet.printShips(List.of(b, c));
+		Fleet.printShips(List.of(b, c));
 
 		String out = output();
 		assertAll("Impressão dos navios",
@@ -461,7 +461,7 @@ public class FleetTest {
 	@Test
 	@DisplayName("printShips(null) falha a asserção e lança AssertionError")
 	void printShipsNullThrowsAssertionError() {
-		assertThrows(AssertionError.class, () -> fleet.printShips(null),
+		assertThrows(AssertionError.class, () -> Fleet.printShips(null),
 				"Error: expected AssertionError for a null list but none was thrown");
 	}
 

@@ -76,7 +76,7 @@ public class Fleet implements IFleet
 	/**
 	 * Add ship boolean.
 	 *
-	 * @param s the s
+	 * @param ship the s
 	 * @return the boolean
 	 */
 	/*
@@ -85,14 +85,14 @@ public class Fleet implements IFleet
      * @see battleship.IFleet#addShip(battleship.IShip)
      */
     @Override
-    public boolean addShip(IShip s)
+    public boolean addShip(IShip ship)
     {
-		assert s != null;
+		assert ship != null;
 
 		boolean result = false;
-		if ((ships.size() <= FLEET_SIZE) && (s.isInsideBoard()) && (!colisionRisk(s)))
+		if ((ships.size() <= FLEET_SIZE) && (ship.isInsideBoard()) && (isFarFromOtherShips(ship)))
 		{
-			ships.add(s);
+			ships.add(ship);
 			result = true;
 		}
 		return result;
@@ -192,28 +192,28 @@ public class Fleet implements IFleet
 	 * @param s the s
 	 * @return the boolean
 	 */
-	private boolean colisionRisk(IShip s)
+	private boolean isFarFromOtherShips(IShip s)
     {
 		assert s != null;
 
 		for (int i = 0; i < ships.size(); i++)
 		{
 			if (ships.get(i).tooCloseTo(s))
-				return true;
+				return false;
 		}
-		return false;
+		return true;
     }
 
 	/**
 	 * This operation prints all the given ships
 	 *
-	 * @param ships The list of ships
+	 * @param shipList The list of ships
 	 */
-	public void printShips(List<IShip> ships)
+	public static void printShips(List<IShip> shipList)
 	{
-		assert ships != null;
+		assert shipList != null;
 
-		for (IShip ship : ships)
+		for (IShip ship : shipList)
 			System.out.println(ship);
 	}
 

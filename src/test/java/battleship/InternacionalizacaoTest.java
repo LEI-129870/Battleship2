@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -21,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * - constructor (default): 1
  * - static initializer: 1
  * - setLanguage(String): 1
- * - calcularNumeros() [private]: 1
  * - getMessage(String, Object...): 3
  * - getCurrentLocale(): 1
  */
@@ -113,22 +111,6 @@ class InternacionalizacaoTest {
         } finally {
             Locale.setDefault(originalDefault);
         }
-    }
-
-    // ---------------------------------------------------------------------
-    // calcularNumeros() [private] — CC = 1
-    // ---------------------------------------------------------------------
-
-    @Test
-    @DisplayName("calcularNumeros() (privado) devolve 10")
-    void calcularNumeros() throws Exception {
-        // Método privado e não utilizado: testado por reflexão apenas para cobertura.
-        // Se for removido na Parte 2 (Safe Delete), este teste deve ser apagado também.
-        Method method = Internacionalizacao.class.getDeclaredMethod("calcularNumeros");
-        method.setAccessible(true);
-        int result = (int) method.invoke(internacionalizacao);
-
-        assertEquals(10, result, "Error: expected 10 but got " + result);
     }
 
     // ---------------------------------------------------------------------
