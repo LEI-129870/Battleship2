@@ -13,26 +13,31 @@ import java.util.Objects;
  */
 public abstract class Ship implements IShip
 {
+	public static final String GALEAO1 = "galeao";
 	/**
 	 * The constant GALEAO.
 	 */
-	private static final String GALEAO = "galeao";
+	private static final String GALEAO = GALEAO1;
+	public static final String FRAGATA1 = "fragata";
 	/**
 	 * The constant FRAGATA.
 	 */
-	private static final String FRAGATA = "fragata";
+	private static final String FRAGATA = FRAGATA1;
+	public static final String NAU1 = "nau";
 	/**
 	 * The constant NAU.
 	 */
-	private static final String NAU = "nau";
+	private static final String NAU = NAU1;
+	public static final String CARAVELA1 = "caravela";
 	/**
 	 * The constant CARAVELA.
 	 */
-	private static final String CARAVELA = "caravela";
+	private static final String CARAVELA = CARAVELA1;
+	public static final String BARCA1 = "barca";
 	/**
 	 * The constant BARCA.
 	 */
-	private static final String BARCA = "barca";
+	private static final String BARCA = BARCA1;
 
 	/**
 	 * Create a new ship
