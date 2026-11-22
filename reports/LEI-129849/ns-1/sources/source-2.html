@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>Coverage Report > Internacionalizacao</title>
+  <title>Coverage Report > IMove</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,7 +22,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">battleship</a>
 </div>
 
-<h1>Coverage Summary for Class: Internacionalizacao (battleship)</h1>
+<h1>Coverage Summary for Class: IMove (battleship)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -45,7 +45,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Internacionalizacao</td>
+  <td class="name">IMove</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (6/6)
+    (1/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (4/4)
+    (2/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (11/11)
+    (7/7)
   </span>
 </td>
 </tr>
@@ -88,42 +88,40 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package battleship;
-&nbsp;import java.text.MessageFormat;
-&nbsp;import java.util.Locale;
-&nbsp;import java.util.ResourceBundle;
 &nbsp;
-<b class="fc">&nbsp;public class Internacionalizacao {</b>
-&nbsp;    private static ResourceBundle messages;
-&nbsp;    private static Locale currentLocale;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Scanner;
 &nbsp;
-&nbsp;    static {
-&nbsp;        // Idioma por omissão
-<b class="fc">&nbsp;        setLanguage(&quot;pt&quot;);</b>
-&nbsp;    }
+&nbsp;/**
+&nbsp; * IMove
+&nbsp; *
+&nbsp; * @author Your Name
+&nbsp; * Date: 26/02/2026
+&nbsp; * Time: 18:32
+&nbsp; */
+&nbsp;public interface IMove {
+&nbsp;	static Move readMove(int moveNumber, Scanner sc) {
+<b class="fc">&nbsp;		int numShots = sc.nextInt();</b>
+<b class="fc">&nbsp;		List&lt;IPosition&gt; moveShots = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;		for (int i = 0; i &lt; numShots; i++) {</b>
+<b class="fc">&nbsp;			int row = sc.nextInt();</b>
+<b class="fc">&nbsp;			int col = sc.nextInt();</b>
+<b class="fc">&nbsp;			moveShots.add(new Position(row, col));</b>
+&nbsp;		}
+<b class="fc">&nbsp;		return new Move(moveNumber, moveShots, new ArrayList&lt;&gt;());</b>
+&nbsp;	}
 &nbsp;
-&nbsp;    public static void setLanguage(String languageCode) {
-<b class="fc">&nbsp;        currentLocale = Locale.forLanguageTag(languageCode);</b>
-<b class="fc">&nbsp;        messages = ResourceBundle.getBundle(&quot;messages&quot;, currentLocale);</b>
-&nbsp;    }
+&nbsp;	@Override
+&nbsp;	String toString();
 &nbsp;
-&nbsp;    private int calcularNumeros(){
-<b class="fc">&nbsp;        int pontos = 10;</b>
-<b class="fc">&nbsp;        return pontos;</b>
-&nbsp;    }
+&nbsp;	int getNumber();
 &nbsp;
-&nbsp;    private static final int VALOR_LIMITE_PONTOS = 100;
+&nbsp;	List&lt;IPosition&gt; getShots();
 &nbsp;
-&nbsp;    public static String getMessage(String key, Object... args) {
-<b class="fc">&nbsp;        if (messages == null || !messages.containsKey(key)) {</b>
-<b class="fc">&nbsp;            return key;</b>
-&nbsp;        }
-<b class="fc">&nbsp;        String pattern = messages.getString(key);</b>
-<b class="fc">&nbsp;        return MessageFormat.format(pattern, args);</b>
-&nbsp;    }
+&nbsp;	List&lt;IGame.ShotResult&gt; getShotResults();
 &nbsp;
-&nbsp;    public static Locale getCurrentLocale() {
-<b class="fc">&nbsp;        return currentLocale;</b>
-&nbsp;    }
+&nbsp;	String processEnemyFire(boolean verbose);
 &nbsp;}
 </code>
 </pre>
@@ -148,7 +146,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2026-11-20 14:34</div>
+    <div style="float:right;">generated on 2026-11-21 23:58</div>
 </div>
 </body>
 </html>
